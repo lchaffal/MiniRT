@@ -6,16 +6,34 @@
 /*   By: lchaffal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:06:06 by lchaffal          #+#    #+#             */
-/*   Updated: 2025/08/06 12:27:47 by lchaffal         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:38:24 by lchaffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# define D 100 //distance between camera and screen
+
 # include <unistd.h>
 # include "libft/libft.h"
 # include <math.h>
+# include "minilibx-linux/mlx.h"
+
+typedef struct s_vars {
+	void	*mlx;
+	void	*win;
+}	t_vars;
+
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		len;
+	int		endian;
+	int		width;
+	int		height;
+}	t_data;
 
 typedef struct	s_vector {
 	double	x;
