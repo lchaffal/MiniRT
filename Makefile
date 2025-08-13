@@ -1,4 +1,4 @@
-SRC = close_window.c main.c
+SRC = close_window.c find_coordonates.c main.c vector/vector.c
 OBJ = $(SRC:.c=.o)
 
 NAME = miniRT

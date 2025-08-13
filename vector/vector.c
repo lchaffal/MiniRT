@@ -5,42 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchaffal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/06 12:20:46 by lchaffal          #+#    #+#             */
-/*   Updated: 2025/08/13 11:48:06 by lchaffal         ###   ########.fr       */
+/*   Created: 2025/08/13 17:00:41 by lchaffal          #+#    #+#             */
+/*   Updated: 2025/08/13 17:09:30 by lchaffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-t_vector	vector_product(t_vector u, t_vector v)
+long double	vector_product(t_vector u, t_vector v)
 {
 	t_vector	w;
 
-	w.x = u.y * v.z - u.z * v.y;
-	w.y = u.z * v.x - u.x * v.z;
-	w.z = u.x * v.y - u.y * v.x;
-	return(w);
+	w.c.x = u.c.y * v.c.z - u.c.z * v.c.y;
+	w.c.y = u.c.z * v.c.x - u.c.x * v.c.z;
+	w.c.z = u.c.x * v.c.y - u.c.y * v.c.x;
+	return(w.ld);
 }
 
 //returns the scalar product of u and v
-double	scalar(t_vector u, t_vector v)
+float	scalar_product(t_vector u, t_vector v)
 {
-	return (u.x * v.x + u.y * v.y + u.z * v.z);
+	return (u.c.x * v.c.x + u.c.y * v.c.y + u.c.z * v.c.z);
 }
 
 //returns the norm of u
-double	norm_of(t_vector u)
+float	norm_of(t_vector u)
 {
-	return (sqrt(scalar(u, u)));
+	return (sqrt(scalar_product(u, u)));
 }
 
 //changes u so its norm is equal to 1
 void	normalize(t_vector *u)
 {
-	double	norm;
+	float	norm;
 
 	norm = norm_of(*u);
-	u->x = u->x / norm;
-	u->y = u->y / norm;
-	u->z = u->z / norm;
+	u->c.x = u->c.x / norm;
+	u->c.y = u->c.y / norm;
+	u->c.z = u->c.z / norm;
 }

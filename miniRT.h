@@ -6,7 +6,7 @@
 /*   By: lchaffal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:06:06 by lchaffal          #+#    #+#             */
-/*   Updated: 2025/08/13 15:59:56 by lchaffal         ###   ########.fr       */
+/*   Updated: 2025/08/13 16:59:33 by lchaffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,18 @@ typedef struct s_data {
 	int		endian;
 }	t_data;
 
-typedef struct	s_vector {
-	double	x;
-	double	y;
-	double	z;
-}	t_vector;
+typedef struct	s_coord {
+	float	x;
+	float	y;
+	float	z;
+}	t_coord;
 
-typedef struct	s_matrix44 {
-	double	row1[4];
-	double	row2[4];
-	double	row3[4];
-	double	row4[4];
-} t_matrix44;
+typedef union {
+	float f[4];           // 4 floats (4 × 32 bits = 128 bits)
+	t_coord	c;
+	long double ld;       // 1 long double (128 bits, platform-dependent)
+} t_vector;
+
 
 //object can be:
 //spheres, planes and cylinders
@@ -55,26 +55,26 @@ typedef struct	s_object {
 	char	identifier;
 	t_vector	point;
 	t_vector	direction; //only relevant for planes and cylinders
-	double	diameter; //only relevant for spheres and cylinders
-	double	height; //only relevant for cylinders
+	float	diameter; //only relevant for spheres and cylinders
+	float	height; //only relevant for cylinders
 	int	color[3];
 }	t_object;
 
 typedef struct s_lighting {
 	t_vector	point;
-	double	ratio;
+	float	ratio;
 	int	color[3];
 }	t_lighting;
 
 typedef struct s_camera {
 	t_vector	point;
 	t_vector	direction;
-	int	fov;
+	float	fov;
 }	t_camera;
 
 typedef struct s_light {
 	t_vector	point;
-	double	brightness;
+	float	brightness;
 	int	color[3]; //only for bonuses
 }	t_light;
 
