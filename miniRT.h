@@ -6,7 +6,7 @@
 /*   By: lchaffal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:06:06 by lchaffal          #+#    #+#             */
-/*   Updated: 2025/08/13 14:17:44 by lchaffal         ###   ########.fr       */
+/*   Updated: 2025/08/13 15:59:56 by lchaffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define D 1 //distance between camera and screen
 # define WIDTH 1000
 # define HEIGHT 1000
+# define FOV 70
 
 # include <unistd.h>
 # include "libft/libft.h"
