@@ -1,4 +1,4 @@
-SRC = main.c 
+SRC = close_window.c main.c
 OBJ = $(SRC:.c=.o)
 
 NAME = miniRT

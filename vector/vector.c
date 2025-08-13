@@ -6,13 +6,21 @@
 /*   By: lchaffal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 12:20:46 by lchaffal          #+#    #+#             */
-/*   Updated: 2025/08/06 14:11:55 by lchaffal         ###   ########.fr       */
+/*   Updated: 2025/08/13 11:48:06 by lchaffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-//t_vector	vectorize(int x, int y)
+t_vector	vector_product(t_vector u, t_vector v)
+{
+	t_vector	w;
+
+	w.x = u.y * v.z - u.z * v.y;
+	w.y = u.z * v.x - u.x * v.z;
+	w.z = u.x * v.y - u.y * v.x;
+	return(w);
+}
 
 //returns the scalar product of u and v
 double	scalar(t_vector u, t_vector v)

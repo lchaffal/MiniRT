@@ -6,14 +6,16 @@
 /*   By: lchaffal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:06:06 by lchaffal          #+#    #+#             */
-/*   Updated: 2025/08/06 14:38:24 by lchaffal         ###   ########.fr       */
+/*   Updated: 2025/08/13 12:40:04 by lchaffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define D 100 //distance between camera and screen
+# define D 1 //distance between camera and screen
+# define WIDTH 1000
+# define HEIGHT 1000
 
 # include <unistd.h>
 # include "libft/libft.h"
@@ -31,8 +33,6 @@ typedef struct s_data {
 	int		bpp;
 	int		len;
 	int		endian;
-	int		width;
-	int		height;
 }	t_data;
 
 typedef struct	s_vector {
@@ -40,6 +40,13 @@ typedef struct	s_vector {
 	double	y;
 	double	z;
 }	t_vector;
+
+typedef struct	s_matrix44 {
+	double	row1[4];
+	double	row2[4];
+	double	row3[4];
+	double	row4[4];
+} t_matrix44;
 
 //object can be:
 //spheres, planes and cylinders
@@ -69,5 +76,8 @@ typedef struct s_light {
 	double	brightness;
 	int	color[3]; //only for bonuses
 }	t_light;
+
+int	escape_pressed(int keycode, t_vars *vars);
+int	close_mouse(t_vars *vars);
 
 #endif
