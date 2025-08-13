@@ -6,7 +6,7 @@
 /*   By: lchaffal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:05:33 by lchaffal          #+#    #+#             */
-/*   Updated: 2025/08/13 12:48:19 by lchaffal         ###   ########.fr       */
+/*   Updated: 2025/08/13 13:42:53 by lchaffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static void	compute_image(t_data *img)
 
 static void	miniRT(void)
 {
-	t_camera	cam;
-	t_object	sphere;
+	/*t_camera	cam;*/
+	/*t_object	sphere;*/
 	/*t_lighting	ambient_lighting;*/
 	/*t_light	light;*/
 	t_data	img;
