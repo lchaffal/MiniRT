@@ -20,7 +20,7 @@
 # include <unistd.h>
 # include "libft/libft.h"
 # include <math.h>
-# include "minilibx-linux/mlx.h"
+# include "minilibx/mlx.h"
 
 typedef struct s_vars {
 	void	*mlx;

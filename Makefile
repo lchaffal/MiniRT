@@ -6,16 +6,24 @@ NAME = miniRT
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS =
+
 LIBFT = ./libft/
-LIBFTFLAGS = -L./libft -l:libft.a
-LIBX = ./minilibx-linux/ 
-LIBXFLAGS = -L./minilibx-linux -l:libmlx_Linux.a -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+LIBFTFLAGS = -L$(LIBFT) -lft
+
+LIBMLX = ./minilibx/
+LIBMLX_FILE = ./minilibx/libmlx_Linux.a
+
+LIBXFLAGS = -L$(LIBMLX) -lmlx_Linux -lXext -lX11 -lm -lz
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	make -C $(LIBFT) all 
-	make -C $(LIBX) all 
+
+$(LIBMLX_FILE):
+	make -C $(LIBX) all
+
+
+$(NAME): $(OBJ) $(LIBMLX_FILE)
+	make -C $(LIBFT) all
 	cc -Wall -Werror -Wextra -o $@ $^ $(LIBFTFLAGS) $(LIBXFLAGS) -g
 
 %.o : %.c
@@ -32,6 +40,6 @@ fclean : clean
 	rm -f $(NAME)
 
 re : fclean
-	make -C $(LIBFT) re 
-	make -C $(LIBX) re 
+	make -C $(LIBFT) re
+	make -C $(LIBX) re
 	make all
