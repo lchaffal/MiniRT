@@ -3,43 +3,55 @@ OBJ = $(SRC:.c=.o)
 
 NAME = miniRT
 
+UNAME = $(shell uname)
+MAKE = gmake
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-LDFLAGS =
+LDFLAGS = -L/usr/local/lib
 
-LIBFT = ./libft/
-LIBFTFLAGS = -L$(LIBFT) -lft
+LIBFT_DIR = ./libft
+LIBFT_FILE = $(LIBFT_DIR)/libft.a
+LDFLAGS += -L$(LIBFT_DIR)
 
-LIBMLX = ./minilibx/
-LIBMLX_FILE = ./minilibx/libmlx_Linux.a
+LIBMLX_DIR = ./minilibx
+LIBMLX_FILE = $(LIBMLX_DIR)/libmlx_$(UNAME).a
+LDFLAGS += -L$(LIBMLX_DIR)
 
-LIBXFLAGS = -L$(LIBMLX) -lmlx_Linux -lXext -lX11 -lm -lz
+LDFLAGS += -lft -lmlx_$(UNAME) -lXext -lX11 -lm -lz
+
+
 
 all: $(NAME)
 
 
+
+$(LIBFT_FILE):
+	$(MAKE) -C $(LIBFT_DIR) all
+
 $(LIBMLX_FILE):
-	make -C $(LIBX) all
+	$(MAKE) -C $(LIBMLX_DIR) all
 
 
-$(NAME): $(OBJ) $(LIBMLX_FILE)
-	make -C $(LIBFT) all
-	cc -Wall -Werror -Wextra -o $@ $^ $(LIBFTFLAGS) $(LIBXFLAGS) -g
 
-%.o : %.c
-	cc -Wall -Werror -Wextra -o $@ -c $< -g
+$(NAME): $(OBJ) $(LIBFT_FILE) $(LIBMLX_FILE)
+	cc $(LDFLAGS) $(OBJ) -o $@
 
-clean :
-	make -C $(LIBFT) clean
-	make -C $(LIBX) clean
+%.o: %.c
+	cc $(CFLAGS) -c $< -o $@
+
+
+
+clean:
+	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(LIBMLX_DIR) clean
 	rm -f $(OBJ)
 
-fclean : clean
-	make -C $(LIBFT) fclean
-	make -C $(LIBX) clean
+fclean: clean
+	$(MAKE) -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
 
-re : fclean
-	make -C $(LIBFT) re
-	make -C $(LIBX) re
-	make all
+re: fclean
+	$(MAKE) -C $(LIBFT_DIR) re
+	$(MAKE) -C $(LIBMLX_DIR) re
+	$(MAKE) all
